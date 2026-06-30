@@ -1,0 +1,25 @@
+.layout {
+  display: flex;
+  height: 100vh;
+  background: #f7f8fa;
+  overflow: hidden;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  background: #f7f8fa;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+  padding: 20px;
+  background: #f7f8fa;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
