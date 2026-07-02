@@ -69,3 +69,60 @@
     font-size:42px;
     color:#16324f;
 }
+
+@media (max-width: 1000px) {
+    .party-page {
+        padding: 16px;
+    }
+
+    .party-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .party-header h1 {
+        font-size: 30px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .party-page {
+        padding: 10px;
+    }
+
+    .party-header h1 {
+        font-size: 26px;
+    }
+
+    .party-header p {
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    .add-party-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 18px;
+    }
+
+    .stat-card h4 {
+        margin-bottom: 28px;
+    }
+
+    .stat-card h2 {
+        font-size: 32px;
+    }
+}

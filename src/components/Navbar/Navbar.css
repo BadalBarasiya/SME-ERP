@@ -57,3 +57,26 @@
 .logout-btn:hover {
   background: #333;
 }
+
+@media (max-width: 720px) {
+  .navbar {
+    padding: 0 12px;
+  }
+
+  .navbar-right {
+    gap: 10px;
+  }
+
+  .user-info span {
+    display: none;
+  }
+
+  .divider {
+    height: 24px;
+  }
+
+  .logout-btn {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+}

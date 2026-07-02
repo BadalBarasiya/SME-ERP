@@ -431,3 +431,132 @@
     align-items: center;
   }
 }
+
+@media (max-width: 640px) {
+  .item-page {
+    padding: 10px;
+  }
+
+  .item-header h1 {
+    font-size: 26px;
+  }
+
+  .item-header p {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .add-item-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .item-stats {
+    gap: 12px;
+  }
+
+  .item-stat-card {
+    min-height: 128px;
+    padding: 16px;
+  }
+
+  .item-stat-card h4 {
+    font-size: 20px;
+    margin-bottom: 38px;
+  }
+
+  .item-search-box input,
+  .item-filter-box select {
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .item-search-box input {
+    padding-left: 48px;
+  }
+
+  .item-search-icon {
+    left: 16px;
+    top: 14px;
+    font-size: 22px;
+  }
+
+  .item-dropdown-icon {
+    top: 15px;
+  }
+
+  .item-table-card {
+    border-radius: 12px;
+  }
+
+  .item-table th,
+  .item-table td {
+    padding: 14px 12px;
+  }
+
+  .item-form-card {
+    padding: 22px 16px;
+    border-radius: 12px;
+  }
+
+  .item-form-card h2 {
+    font-size: 26px;
+  }
+
+  .item-form-subtitle {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 28px;
+  }
+
+  .item-form-grid {
+    row-gap: 22px;
+  }
+
+  .item-form-group label,
+  .item-edit-grid label {
+    font-size: 18px;
+  }
+
+  .item-form-group input,
+  .item-form-group select,
+  .item-edit-grid input {
+    height: 48px;
+    font-size: 16px;
+    padding: 0 16px;
+  }
+
+  .weight-row {
+    grid-template-columns: 1fr;
+  }
+
+  .item-button-group,
+  .item-edit-actions {
+    gap: 16px;
+    margin-top: 30px;
+  }
+
+  .item-save-btn,
+  .item-cancel-btn,
+  .item-edit-submit,
+  .item-edit-delete {
+    width: 100%;
+    max-width: 260px;
+    height: 56px;
+    font-size: 20px;
+  }
+
+  .item-modal-backdrop {
+    padding: 12px;
+  }
+
+  .item-edit-modal {
+    border-radius: 12px;
+    padding: 60px 16px 24px;
+  }
+
+  .item-modal-close {
+    top: 18px;
+    right: 18px;
+  }
+}

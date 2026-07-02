@@ -139,11 +139,18 @@
   padding: 24px;
 }
 
+.category-card-title {
+  display: block;
+  font-size: 20px;
+  color: #000;
+  margin-bottom: 20px;
+}
+
 .category-card p {
   color: #8b8b8b;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
-  margin-top: 104px;
+  margin-top: 20px;
 }
 
 .category-card-actions {
@@ -168,8 +175,8 @@
 
 .category-card-line {
   height: 1px;
-  background: #bfbfbf;
-  margin-top: 50px;
+  background: #dfe8ef;
+  margin: 0;
 }
 
 .category-card-line.bottom {
@@ -185,9 +192,9 @@
   justify-content: space-between;
   align-items: center;
   min-height: 56px;
-  border-bottom: 1px solid #bfbfbf;
+  border-bottom: 1px solid #dfe8ef;
   color: #8b8b8b;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -330,5 +337,122 @@
   .category-modal-actions {
     flex-direction: column;
     align-items: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .category-page {
+    padding: 10px;
+  }
+
+  .category-header h1 {
+    font-size: 26px;
+  }
+
+  .category-header p {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .add-category-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .category-stats {
+    gap: 12px;
+  }
+
+  .category-stat-card {
+    min-height: 128px;
+    padding: 16px;
+  }
+
+  .category-stat-card h4 {
+    font-size: 20px;
+    margin-bottom: 38px;
+  }
+
+  .category-search-box input,
+  .category-filter-box select {
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .category-search-box input {
+    padding-left: 48px;
+  }
+
+  .category-search-icon {
+    left: 16px;
+    top: 14px;
+    font-size: 22px;
+  }
+
+  .category-dropdown-icon {
+    top: 15px;
+  }
+
+  .category-grid {
+    gap: 14px;
+  }
+
+  .category-card {
+    min-height: 128px;
+    padding: 18px;
+  }
+
+  .category-card p {
+    margin-top: 80px;
+    font-size: 18px;
+  }
+
+  .category-card-actions {
+    top: 20px;
+    right: 18px;
+  }
+
+  .category-modal-backdrop {
+    padding: 12px;
+  }
+
+  .category-modal {
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    border-radius: 12px;
+    padding: 30px 16px;
+  }
+
+  .category-modal h2 {
+    font-size: 26px;
+  }
+
+  .category-modal > p {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 28px;
+  }
+
+  .category-modal label {
+    font-size: 18px;
+  }
+
+  .category-modal input,
+  .subcategory-input-row button {
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .category-modal-actions {
+    gap: 16px;
+    margin-top: 30px;
+  }
+
+  .category-save-btn,
+  .category-cancel-btn {
+    width: 100%;
+    max-width: 260px;
+    height: 56px;
+    font-size: 20px;
   }
 }

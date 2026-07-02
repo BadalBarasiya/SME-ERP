@@ -1,10 +1,9 @@
 import { LuPencil, LuTrash2 } from "react-icons/lu";
 
-const PartyRow = ({ party }) => {
+const PartyRow = ({ party, onEdit,onDelete }) => {
   return (
     <tr>
-
-      <td>{party.name}</td>
+      {/* <td>{party.name}</td>
 
       <td>{party.type}</td>
 
@@ -12,20 +11,29 @@ const PartyRow = ({ party }) => {
 
       <td>{party.contact}</td>
 
+      <td>{party.email}</td> */}
+
+      <td>{party.partyName}</td>
+
+      <td>{party.partyType}</td>
+
+      <td>{party.gstNo}</td>
+
+      <td>{party.mobile}</td>
+
       <td>{party.email}</td>
 
       <td>
-
-        <button className="edit-btn">
+        <button className="edit-btn"
+         onClick={() => onEdit(party)}>
           <LuPencil />
         </button>
 
-        <button className="delete-btn">
+        <button className="delete-btn"
+        onClick={() => onDelete(party._id)}>
           <LuTrash2 />
         </button>
-
       </td>
-
     </tr>
   );
 };

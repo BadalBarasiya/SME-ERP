@@ -22,4 +22,17 @@
   background: #f7f8fa;
   overflow-y: auto;
   overflow-x: hidden;
+  overscroll-behavior: contain;
+}
+
+@media (max-width: 1100px) {
+  .content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 720px) {
+  .content {
+    padding: 12px;
+  }
 }

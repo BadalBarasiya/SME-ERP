@@ -6,6 +6,14 @@ const SearchFilter = ({
   filterType,
   setFilterType,
 }) => {
+  //  const handleInputChange = (e) => {
+  //   const value = e.target.value;
+    
+  //   This will print to your console instantly on every keypress
+  //   console.log("⚡ Instant Change (No Debounce):", value);
+    
+  //   setSearch(value);
+  // };
   return (
     <div className="search-filter">
 
@@ -17,7 +25,9 @@ const SearchFilter = ({
           placeholder="Search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          // onChange={handleInputChange}
         />
+
       </div>
 
       <div className="filter-box">

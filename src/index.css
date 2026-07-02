@@ -10,7 +10,9 @@ body {
   background: #f7f8fa;
   overflow: hidden;
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 #root {
   height: 100vh;
 }

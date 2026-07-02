@@ -1,15 +1,19 @@
 import { useState } from "react";
 import "./PartyForm.css";
+import API from "../../api/partyApi";
 
-const PartyForm = ({ onCancel }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    gstin: "",
-    contact: "",
-    email: "",
-    type: "",
-  });
+const getInitialFormData = (selectedParty) => ({
+  partyName: selectedParty?.partyName || "",
+  gstNo: selectedParty?.gstNo || "",
+  mobile: selectedParty?.mobile || "",
+  email: selectedParty?.email || "",
+  partyType: selectedParty?.partyType || "",
+});
 
+const PartyForm = ({ onCancel, onPartyAdded, selectedParty }) => {
+  const [formData, setFormData] = useState(() =>
+    getInitialFormData(selectedParty),
+  );
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -17,18 +21,59 @@ const PartyForm = ({ onCancel }) => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(formData);
+  // };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const res = await API.post("/add", formData);
+
+  //     alert(res.data.message);
+  //     alert(res.data.message);
+
+  //     onPartyAdded();
+  //     // onCancel();
+  //   } catch (error) {
+  //     alert(error.response?.data?.message || "Something went wrong");
+  //   }
+  // };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    let res;
+
+    if (selectedParty) {
+      res = await API.put(
+        `/${selectedParty._id}`,
+        formData
+      );
+    } else {
+      res = await API.post("/add", formData);
+    }
+
+    alert(res.data.message);
+
+    onPartyAdded();
+
+  } catch (error) {
+    alert(
+      error.response?.data?.message ||
+      "Something went wrong"
+    );
+  }
+};
   const handleCancel = () => {
     setFormData({
-      name: "",
-      gstin: "",
-      contact: "",
+      partyName: "",
+      gstNo: "",
+      mobile: "",
       email: "",
-      type: "",
+      partyType: "",
     });
 
     onCancel?.();
@@ -36,7 +81,8 @@ const PartyForm = ({ onCancel }) => {
 
   return (
     <div className="party-form-card">
-      <h2>Add New Party</h2>
+      <h2>  {selectedParty ? "Edit Party" : "Add New Party"}
+</h2>
 
       <p className="subtitle">
         Add and manage customer or vendor information for smooth purchase and
@@ -49,9 +95,9 @@ const PartyForm = ({ onCancel }) => {
             <label>Name *</label>
             <input
               type="text"
-              name="name"
+              name="partyName"
               placeholder="Enter Party Name"
-              value={formData.name}
+              value={formData.partyName}
               onChange={handleChange}
             />
           </div>
@@ -60,9 +106,9 @@ const PartyForm = ({ onCancel }) => {
             <label>GSTIN</label>
             <input
               type="text"
-              name="gstin"
+              name="gstNo"
               placeholder="Enter GSTIN"
-              value={formData.gstin}
+              value={formData.gstNo}
               onChange={handleChange}
             />
           </div>
@@ -71,9 +117,9 @@ const PartyForm = ({ onCancel }) => {
             <label>Contact Number</label>
             <input
               type="text"
-              name="contact"
+              name="mobile"
               placeholder="Enter Contact Number"
-              value={formData.contact}
+              value={formData.mobile}
               onChange={handleChange}
             />
           </div>
@@ -93,8 +139,8 @@ const PartyForm = ({ onCancel }) => {
             <label>Type *</label>
 
             <select
-              name="type"
-              value={formData.type}
+              name="partyType"
+              value={formData.partyType}
               onChange={handleChange}
             >
               <option value="">Select Type</option>
@@ -106,14 +152,10 @@ const PartyForm = ({ onCancel }) => {
 
         <div className="button-group">
           <button className="save-btn" type="submit">
-            Save
+              {selectedParty ? "Update" : "Save"}
           </button>
 
-          <button
-            className="cancel-btn"
-            type="button"
-            onClick={handleCancel}
-          >
+          <button className="cancel-btn" type="button" onClick={handleCancel}>
             Cancel
           </button>
         </div>
