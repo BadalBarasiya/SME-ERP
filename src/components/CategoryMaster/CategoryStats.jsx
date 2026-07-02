@@ -10,7 +10,7 @@ const CategoryStats = ({ stats }) => {
 
       <div className="category-stat-card">
         <h4>Total Sub Categories</h4>
-        <h2>{stats?.totalSubcategories || 84}</h2>
+        <h2>{stats?.totalSubCategories || 84}</h2>
       </div>
     </div>
   );

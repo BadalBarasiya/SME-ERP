@@ -1,71 +1,3 @@
-// import { useState } from "react";
-// import "./PartyTable.css";
-
-// import SearchFilter from "./SearchFilter";
-// import PartyRow from "./PartyRow";
-
-// const PartyTable = ({ parties,onEdit,onDelete }) => {
-//   const [search, setSearch] = useState("");
-//   const [filterType, setFilterType] = useState("");
-
-//   const filteredData = parties.filter((party) => {
-//     const matchSearch = party.partyName
-//       .toLowerCase()
-//       .includes(search.toLowerCase());
-
-//     const matchType =
-//       filterType === "" || party.partyType === filterType;
-
-//     return matchSearch && matchType;
-//   });
-
-//   return (
-//     <div className="table-card">
-//       <SearchFilter
-//         search={search}
-//         setSearch={setSearch}
-//         filterType={filterType}
-//         setFilterType={setFilterType}
-//       />
-
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>Party Name</th>
-//             <th>Type</th>
-//             <th>GSTIN</th>
-//             <th>Contact</th>
-//             <th>Email</th>
-//             <th>Action</th>
-//           </tr>
-//         </thead>
-
-//         <tbody>
-//           {filteredData.length > 0 ? (
-//             filteredData.map((party) => (
-//               <PartyRow
-//                 key={party._id}
-//                 party={party}
-//                   onEdit={onEdit}
-//                       onDelete={onDelete}
-
-//               />
-//             ))
-//           ) : (
-//             <tr>
-//               <td colSpan="6" style={{ textAlign: "center" }}>
-//                 No Parties Found
-//               </td>
-//             </tr>
-//           )}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// };
-
-// export default PartyTable;
-
 import "./PartyTable.css";
 
 import SearchFilter from "./SearchFilter";
@@ -91,9 +23,6 @@ const PartyTable = ({
         setSearch={setSearch}
         filterType={filterType}
         setFilterType={setFilterType}
-
-        // filterType=""
-        // setFilterType={() => {}}
       />
 
       <table>
@@ -108,11 +37,7 @@ const PartyTable = ({
               style={{ cursor: "pointer" }}
             >
               Party Name
-               {sortBy === "partyName"
-    ? order === "asc"
-      ? "▲"
-      : "▼"
-    : ""}
+              {sortBy === "partyName" ? (order === "asc" ? "▲" : "▼") : ""}
             </th>
             <th>Type</th>
             <th>GSTIN</th>

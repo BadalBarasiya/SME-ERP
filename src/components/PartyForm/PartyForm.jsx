@@ -21,52 +21,25 @@ const PartyForm = ({ onCancel, onPartyAdded, selectedParty }) => {
     });
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(formData);
-  // };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const res = await API.post("/add", formData);
-
-  //     alert(res.data.message);
-  //     alert(res.data.message);
-
-  //     onPartyAdded();
-  //     // onCancel();
-  //   } catch (error) {
-  //     alert(error.response?.data?.message || "Something went wrong");
-  //   }
-  // };
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    let res;
+    try {
+      let res;
 
-    if (selectedParty) {
-      res = await API.put(
-        `/${selectedParty._id}`,
-        formData
-      );
-    } else {
-      res = await API.post("/add", formData);
+      if (selectedParty) {
+        res = await API.put(`/${selectedParty._id}`, formData);
+      } else {
+        res = await API.post("/add", formData);
+      }
+
+      alert(res.data.message);
+
+      onPartyAdded();
+    } catch (error) {
+      alert(error.response?.data?.message || "Something went wrong");
     }
-
-    alert(res.data.message);
-
-    onPartyAdded();
-
-  } catch (error) {
-    alert(
-      error.response?.data?.message ||
-      "Something went wrong"
-    );
-  }
-};
+  };
   const handleCancel = () => {
     setFormData({
       partyName: "",
@@ -81,8 +54,7 @@ const PartyForm = ({ onCancel, onPartyAdded, selectedParty }) => {
 
   return (
     <div className="party-form-card">
-      <h2>  {selectedParty ? "Edit Party" : "Add New Party"}
-</h2>
+      <h2> {selectedParty ? "Edit Party" : "Add New Party"}</h2>
 
       <p className="subtitle">
         Add and manage customer or vendor information for smooth purchase and
@@ -135,8 +107,8 @@ const PartyForm = ({ onCancel, onPartyAdded, selectedParty }) => {
             />
           </div>
 
-          <div className="form-group full-width">
-            <label>Type *</label>
+          <div className="form-group">
+            <label>Type</label>
 
             <select
               name="partyType"
@@ -152,7 +124,7 @@ const PartyForm = ({ onCancel, onPartyAdded, selectedParty }) => {
 
         <div className="button-group">
           <button className="save-btn" type="submit">
-              {selectedParty ? "Update" : "Save"}
+            {selectedParty ? "Update" : "Save"}
           </button>
 
           <button className="cancel-btn" type="button" onClick={handleCancel}>

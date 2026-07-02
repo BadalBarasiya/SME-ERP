@@ -84,44 +84,46 @@
 .category-search-box input,
 .category-filter-box select {
   width: 100%;
-  height: 62px;
+  height: 44px;
   border: 1px solid #d8e1e8;
-  border-radius: 8px;
+  border-radius: 6px;
   background: #fff;
   color: #333;
-  font-size: 24px;
+  font-size: 16px;
   outline: none;
 }
 
 .category-search-box input {
-  padding-left: 68px;
+  padding-left: 44px;
 }
 
 .category-search-icon {
   position: absolute;
-  left: 24px;
-  top: 19px;
+  left: 16px;
+  top: 12px;
   color: #d8d8d8;
-  font-size: 26px;
+  font-size: 20px;
 }
 
 .category-filter-box {
   position: relative;
-  width: 210px;
+  width: 160px;
 }
 
 .category-filter-box select {
   appearance: none;
   color: #999;
-  padding-left: 56px;
+  padding-left: 16px;
+  padding-right: 36px;
 }
 
 .category-dropdown-icon {
   position: absolute;
-  right: 28px;
-  top: 21px;
+  right: 12px;
+  top: 14px;
   color: #999;
   pointer-events: none;
+  font-size: 16px;
 }
 
 .category-grid {
@@ -218,49 +220,50 @@
 }
 
 .category-modal {
-  width: min(898px, 100%);
+  width: min(600px, 100%);
   background: #fff;
   border: 1px solid #d7e2eb;
-  border-radius: 16px;
-  padding: 46px 130px 62px;
+  border-radius: 12px;
+  padding: 32px 48px;
 }
 
 .category-modal h2 {
   color: #000;
   text-align: center;
-  font-size: 34px;
-  font-weight: 400;
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .category-modal > p {
   color: #808080;
   text-align: center;
-  font-size: 18px;
-  margin: 6px 0 42px;
+  font-size: 14px;
+  margin: 6px 0 28px;
 }
 
 .category-modal label {
   display: flex;
   flex-direction: column;
-  color: #000;
-  font-size: 24px;
-  margin-bottom: 20px;
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 16px;
 }
 
 .category-modal label span {
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+  font-weight: 500;
 }
 
 .category-modal input {
   width: 100%;
-  height: 63px;
+  height: 44px;
   border: 1px solid #d7e2eb;
-  border-radius: 8px;
+  border-radius: 6px;
   background: #fff;
   color: #333;
-  font-size: 20px;
+  font-size: 15px;
   outline: none;
-  padding: 0 24px;
+  padding: 0 16px;
 }
 
 .category-modal input::placeholder {
@@ -269,34 +272,35 @@
 
 .subcategory-input-row {
   display: grid;
-  grid-template-columns: 1fr 178px;
+  grid-template-columns: 1fr 140px;
   gap: 12px;
 }
 
 .subcategory-input-row button {
-  height: 63px;
+  height: 44px;
   border: 1px solid #333;
-  border-radius: 8px;
+  border-radius: 6px;
   background: #fff;
   color: #333;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .category-modal-actions {
   display: flex;
   justify-content: center;
-  gap: 50px;
-  margin-top: 54px;
+  gap: 24px;
+  margin-top: 32px;
 }
 
 .category-save-btn,
 .category-cancel-btn {
-  width: 218px;
-  height: 64px;
-  border-radius: 14px;
+  width: 140px;
+  height: 44px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .category-save-btn {

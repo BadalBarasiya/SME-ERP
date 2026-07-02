@@ -3,13 +3,12 @@ import { LuPlus } from "react-icons/lu";
 const PartyHeader = ({ onAddParty }) => {
   return (
     <div className="party-header">
-
       <div>
         <h1>Party Master</h1>
 
         <p>
-          Centralised management of customers and vendors with GST,
-          contact, and role details.
+          Centralised management of customers and vendors with GST, contact, and
+          role details.
         </p>
       </div>
 
@@ -17,7 +16,6 @@ const PartyHeader = ({ onAddParty }) => {
         <LuPlus />
         Add Party
       </button>
-
     </div>
   );
 };

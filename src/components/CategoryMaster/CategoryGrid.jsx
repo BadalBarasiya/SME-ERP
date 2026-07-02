@@ -1,59 +1,87 @@
-import React from "react";
+import React, { useState } from "react";
 import { LuChevronDown, LuChevronUp, LuPencil, LuTrash2 } from "react-icons/lu";
 
-const CategoryGrid = ({ filteredCategories, toggleExpand }) => {
+const CategoryGrid = ({ categories, onEdit, onDelete }) => {
+  const [expanded, setExpanded] = useState({});
+
+  const toggleExpand = (id) => {
+    setExpanded((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
   return (
     <div className="category-grid">
-      {filteredCategories.map((category, index) => (
-        <React.Fragment key={`${category.name}-${index}`}>
+      {categories.map((category) => (
+        <React.Fragment key={category._id}>
           {/* Category Card */}
           <div className="category-card">
             <span className="category-card-title">Category</span>
+
             <div className="category-card-actions">
-              <button type="button" aria-label="Edit category">
+              <button type="button" onClick={() => onEdit(category)}>
                 <LuPencil />
               </button>
-              <button className="delete" type="button" aria-label="Delete category">
+
+              <button
+                className="delete"
+                type="button"
+                onClick={() => onDelete(category._id)}
+              >
                 <LuTrash2 />
               </button>
             </div>
+
             <div className="category-card-line" />
-            <p>{category.name}</p>
+
+            <p>{category.categoryName}</p>
           </div>
 
           {/* Sub Category Card */}
           <div className="category-card subcategory-card">
             <span
               className="category-card-title"
-              onClick={() => toggleExpand(index)}
-              style={{ cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+              onClick={() => toggleExpand(category._id)}
+              style={{
+                cursor: "pointer",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
             >
               Sub Categories
-              <div className="category-card-actions inline" style={{ position: "static" }}>
-                {category.isExpanded ? <LuChevronUp /> : <LuChevronDown />}
+              <div
+                className="category-card-actions inline"
+                style={{ position: "static" }}
+              >
+                {expanded[category._id] ? <LuChevronUp /> : <LuChevronDown />}
               </div>
             </span>
 
-            {category.isExpanded && (
+            {expanded[category._id] && (
               <>
                 <div className="category-card-line" />
-                {category.subCategories.map((subCategory, subIndex) => (
-                  <div className="subcategory-row" key={`${subCategory}-${subIndex}`}>
-                    <span>{subCategory}</span>
-                    <div className="category-card-actions inline">
-                      <button type="button" aria-label="Edit sub category">
-                        <LuPencil />
-                      </button>
-                      <button
-                        className="delete"
-                        type="button"
-                        aria-label="Delete sub category"
-                      >
-                        <LuTrash2 />
-                      </button>
+
+                {category.subCategories.length > 0 ? (
+                  category.subCategories.map((subCategory) => (
+                    <div className="subcategory-row" key={subCategory._id}>
+                      <span>{subCategory.name}</span>
+
+                      <div className="category-card-actions inline">
+                        <button type="button">
+                          <LuPencil />
+                        </button>
+
+                        <button className="delete" type="button">
+                          <LuTrash2 />
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))
+                ) : (
+                  <p>No Sub Categories</p>
+                )}
               </>
             )}
           </div>
