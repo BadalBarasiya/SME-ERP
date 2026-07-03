@@ -52,11 +52,18 @@
 }
 
 .menu-item:hover {
-  background: #f6f6f6;
+  background: #f4f4f4;
 }
 
 .menu-item.active {
-  border: 2px solid #2f211b;
+  /* background: #2f211b; */
+  background: #484747;
+  color: #fff;
+}
+
+.menu-item.active .icon,
+.menu-item.active span {
+  color: #fff;
 }
 
 .left {
@@ -75,6 +82,11 @@
 
 .arrow {
   font-size: 22px;
+  transition: transform 0.25s ease;
+}
+
+.arrow.arrow-open {
+  transform: rotate(90deg);
 }
 
 .submenu-popup {
@@ -105,7 +117,7 @@
 }
 
 .submenu-item:hover {
-  background: #f8f8f8;
+  background: #f4f4f4;
 }
 
 .sidebar-footer {

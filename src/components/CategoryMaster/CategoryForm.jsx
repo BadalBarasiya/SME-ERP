@@ -33,7 +33,7 @@ const CategoryForm = ({
           {/* Sub Categories */}
 
           <label>
-            <span>Sub Categories</span>
+            <span>Sub Categories*</span>
 
             {formData.subCategories.map((subCategory, index) => (
               <div key={index} className="subcategory-input-row">
@@ -60,7 +60,7 @@ const CategoryForm = ({
             <button
               type="button"
               onClick={addSubCategory}
-              style={{ marginTop: "12px" }}
+              style={{ marginTop: "12px",height:"100%",margin:"auto" }}
             >
               + Add More
             </button>

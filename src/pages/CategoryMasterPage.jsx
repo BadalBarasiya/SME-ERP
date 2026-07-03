@@ -247,7 +247,9 @@ const CategoryMasterPage = () => {
     handleSubCategoryChange,
     addSubCategory,
     removeSubCategory,
-    handleSubmit
+    handleSubmit,
+    handleEditSubCategory,
+    handleDeleteSubCategory,
   } = useCategory();
 
   return (
@@ -272,6 +274,8 @@ const CategoryMasterPage = () => {
             categories={categories}
             onEdit={handleEdit}
             onDelete={handleDelete}
+            onEditSubCategory={handleEditSubCategory}
+            onDeleteSubCategory={handleDeleteSubCategory}
           />
 
           <Pagination page={page} totalPages={totalPages} setPage={setPage} />
@@ -293,6 +297,8 @@ const CategoryMasterPage = () => {
             categories={categories}
             onEdit={handleEdit}
             onDelete={handleDelete}
+            onEditSubCategory={handleEditSubCategory}
+            onDeleteSubCategory={handleDeleteSubCategory}
           />
 
           <Pagination page={page} totalPages={totalPages} setPage={setPage} />

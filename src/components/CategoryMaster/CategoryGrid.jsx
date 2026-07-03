@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { LuChevronDown, LuChevronUp, LuPencil, LuTrash2 } from "react-icons/lu";
 
-const CategoryGrid = ({ categories, onEdit, onDelete }) => {
+const CategoryGrid = ({
+  categories,
+  onEdit,
+  onDelete,
+  onEditSubCategory,
+  onDeleteSubCategory,
+}) => {
   const [expanded, setExpanded] = useState({});
 
   const toggleExpand = (id) => {
@@ -69,11 +75,24 @@ const CategoryGrid = ({ categories, onEdit, onDelete }) => {
                       <span>{subCategory.name}</span>
 
                       <div className="category-card-actions inline">
-                        <button type="button">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            onEditSubCategory(category, subCategory)
+                          }
+                        >
                           <LuPencil />
                         </button>
 
-                        <button className="delete" type="button">
+                        <button
+                          className="delete"
+                          type="button"
+                          onClick={() => {
+                             console.log(category._id,subCategory._id);
+                             
+                            onDeleteSubCategory(category._id, subCategory._id)
+                          }}
+                        >
                           <LuTrash2 />
                         </button>
                       </div>

@@ -7,9 +7,11 @@ import {
   addCategory,
   updateCategory,
   deleteCategory,
+  deleteSubCategory,
 } from "../services/categoryService";
 
 const useCategory = () => {
+
   // ==========================
   // States
   // ==========================
@@ -41,7 +43,7 @@ const useCategory = () => {
   // Form Data
   const [formData, setFormData] = useState({
     categoryName: "",
-   subCategories: [{ name: "" }]
+    subCategories: [{ name: "" }],
   });
 
   // ==========================
@@ -55,7 +57,7 @@ const useCategory = () => {
         limit,
         debouncedSearch,
         sortBy,
-        order
+        order,
       );
 
       setCategories(res.data.categories);
@@ -95,7 +97,7 @@ const useCategory = () => {
 
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this category?"
+      "Are you sure you want to delete this category?",
     );
 
     if (!confirmDelete) return;
@@ -121,9 +123,9 @@ const useCategory = () => {
     setFormData({
       categoryName: category.categoryName,
       subCategories:
-  category.subCategories.length > 0
-    ? category.subCategories
-    : [{ name: "" }],
+        category.subCategories.length > 0
+          ? category.subCategories
+          : [{ name: "" }],
     });
 
     setShowForm(true);
@@ -140,10 +142,10 @@ const useCategory = () => {
 
     setSelectedCategory(null);
 
-   setFormData({
-  categoryName: "",
-  subCategories: [{ name: "" }],
-});
+    setFormData({
+      categoryName: "",
+      subCategories: [{ name: "" }],
+    });
   };
 
   // ==========================
@@ -171,69 +173,90 @@ const useCategory = () => {
   const addSubCategory = () => {
     setFormData({
       ...formData,
-    subCategories: [
-  ...formData.subCategories,
-  { name: "" },
-],
+      subCategories: [...formData.subCategories, { name: "" }],
     });
   };
-const removeSubCategory = (index) => {
-  const updated = [...formData.subCategories];
+  const removeSubCategory = (index) => {
+    const updated = [...formData.subCategories];
 
-  updated.splice(index, 1);
+    updated.splice(index, 1);
 
-  if (updated.length === 0) {
-    updated.push({ name: "" });
-  }
+    if (updated.length === 0) {
+      updated.push({ name: "" });
+    }
+
+    setFormData({
+      ...formData,
+      subCategories: updated,
+    });
+  };
+
+// Editsubcategory
+
+const handleEditSubCategory = (category, subCategory) => {
+  setSelectedCategory(category);
 
   setFormData({
-    ...formData,
-    subCategories: updated,
+    categoryName: category.categoryName,
+    subCategories: category.subCategories,
   });
+
+  setShowForm(true);
 };
-//   const removeSubCategory = (index) => {
-//     const updated = formData.subCategories.filter(
-//       (_, i) => i !== index
-//     );
-
-//     setFormData({
-//       ...formData,
-//       subCategories: updated,
-//     });
-//   };
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
+const handleDeleteSubCategory = async (
+  categoryId,
+  subCategoryId
+) => {
   try {
-    const payload = {
-      categoryName: formData.categoryName.trim(),
+    const confirmDelete = window.confirm(
+  "Are you sure you want to delete this sub category?"
+);
 
-      subCategories: formData.subCategories.filter(
-        (sub) => sub.name.trim() !== ""
-      ),
-    };
+if (!confirmDelete) return;
+    await deleteSubCategory(categoryId, subCategoryId);
 
-    if (!payload.categoryName) {
-      alert("Category Name is required");
-      return;
-    }
+    await loadData();
 
-    if (selectedCategory) {
-      await updateCategory(selectedCategory._id, payload);
-
-      alert("Category updated successfully");
-    } else {
-      await addCategory(payload);
-
-      alert("Category added successfully");
-    }
-
-    await handleCategoryAdded();
+    alert("Sub Category deleted successfully");
   } catch (error) {
-    alert(error.response?.data?.message || "Something went wrong");
+    alert(error.response?.data?.message);
   }
 };
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const payload = {
+        categoryName: formData.categoryName.trim(),
+
+        subCategories: formData.subCategories.filter(
+          (sub) => sub.name.trim() !== "",
+        ),
+      };
+
+      if (!payload.categoryName) {
+        alert("Category Name is required");
+        return;
+      }
+
+      if (selectedCategory) {
+        await updateCategory(selectedCategory._id, payload);
+
+        alert("Category updated successfully");
+      } else {
+        await addCategory(payload);
+
+        alert("Category added successfully");
+      }
+
+      await handleCategoryAdded();
+    } catch (error) {
+      alert(error.response?.data?.message || "Something went wrong");
+    }
+  };
   // ==========================
   // Effects
   // ==========================
@@ -278,13 +301,14 @@ const handleSubmit = async (e) => {
     handleDelete,
     handleEdit,
     handleCategoryAdded,
-    
 
     handleCategoryChange,
     handleSubCategoryChange,
     addSubCategory,
     removeSubCategory,
-    handleSubmit
+    handleEditSubCategory,
+    handleDeleteSubCategory,
+    handleSubmit,
   };
 };
 

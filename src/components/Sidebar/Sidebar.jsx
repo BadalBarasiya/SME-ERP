@@ -23,6 +23,7 @@ const Sidebar = () => {
   const [openMenu, setOpenMenu] = useState(null);
   const popupRef = useRef(null);
   const navigate = useNavigate();
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -134,8 +135,8 @@ const Sidebar = () => {
                 <span>{item.title}</span>
               </div>
 
-              {item.submenu && openMenu === index && (
-                <span className="arrow">
+              {item.submenu && (
+                <span className={`arrow ${openMenu === index ? "arrow-open" : ""}`}>
                   <LuChevronRight />
                 </span>
               )}
@@ -149,7 +150,6 @@ const Sidebar = () => {
                     key={i}
                     onClick={() => subItem.path && navigate(subItem.path)}
                   >
-
                     <span className="icon">{subItem.icon}</span>
                     <span>{subItem.title}</span>
                   </div>

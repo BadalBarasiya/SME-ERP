@@ -39,3 +39,11 @@ export const deleteCategory = (id) => {
   return API.delete(`/${id}`);
 };
     
+export const deleteSubCategory = (
+  categoryId,
+  subCategoryId
+) => {
+  return API.delete(
+    `/${categoryId}/subcategory/${subCategoryId}`
+  );
+};
