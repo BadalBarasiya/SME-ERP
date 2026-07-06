@@ -1,23 +1,20 @@
-const ItemStats = () => {
-  const cards = [
-    {
-      title: "Total Items",
-      value: 359,
-    },
-    {
-      title: "Total Low Stock Items",
-      value: 4,
-    },
-  ];
-
+const ItemStats = ({ stats }) => {
   return (
     <div className="item-stats">
-      {cards.map((card) => (
-        <div className="item-stat-card" key={card.title}>
-          <h4>{card.title}</h4>
-          <h2>{card.value}</h2>
-        </div>
-      ))}
+      <div className="item-stat-card">
+        <h4>Total Items</h4>
+        <h2>{stats?.totalItems || 0}</h2>
+      </div>
+
+      <div className="item-stat-card">
+        <h4>Total Categories</h4>
+        <h2>{stats?.totalCategories || 0}</h2>
+      </div>
+
+      {/* <div className="item-stat-card">
+        <h4>Low Stock Items</h4>
+        <h2>{stats?.lowStockItems || 0}</h2>
+      </div> */}
     </div>
   );
 };
