@@ -182,10 +182,12 @@ import { useState } from "react";
 import { getCategories } from "../../services/categoryService";
 
 import { addItem, updateItem } from "../../services/itemService";
-const ItemForm = ({ title = "Add New Item",
+const ItemForm = ({
+  title = "Add New Item",
   onCancel,
   selectedItem,
-  onItemAdded, }) => {
+  onItemAdded,
+}) => {
   const [categories, setCategories] = useState([]);
 
   const [subCategories, setSubCategories] = useState([]);
@@ -216,28 +218,28 @@ const ItemForm = ({ title = "Add New Item",
     fetchCategories();
   }, []);
   useEffect(() => {
-  if (selectedItem) {
-    setFormData({
-      itemName: selectedItem.itemName,
-      sizeInInch: selectedItem.sizeInInch,
-      sizeInMm: selectedItem.sizeInMM,
-      category: selectedItem.category._id,
-      subCategory: selectedItem.subCategory?._id || "",
-      itemInKg: selectedItem.itemInKg,
-      weightPerPc: selectedItem.weightPerPc,
-      weightUnit: selectedItem.weightUnit,
-      totalPc: selectedItem.totalPc,
-      dozenWeight: selectedItem.dozenWeight,
-      lowStockWarning: selectedItem.lowStockWarning,
-    });
+    if (selectedItem) {
+      setFormData({
+        itemName: selectedItem.itemName,
+        sizeInInch: selectedItem.sizeInInch,
+        sizeInMm: selectedItem.sizeInMM,
+        category: selectedItem.category._id,
+        subCategory: selectedItem.subCategory?._id || "",
+        itemInKg: selectedItem.itemInKg,
+        weightPerPc: selectedItem.weightPerPc,
+        weightUnit: selectedItem.weightUnit,
+        totalPc: selectedItem.totalPc,
+        dozenWeight: selectedItem.dozenWeight,
+        lowStockWarning: selectedItem.lowStockWarning,
+      });
 
-    const category = categories.find(
-      (cat) => cat._id === selectedItem.category._id
-    );
+      const category = categories.find(
+        (cat) => cat._id === selectedItem.category._id,
+      );
 
-    setSubCategories(category ? category.subCategories : []);
-  }
-}, [selectedItem, categories]);
+      setSubCategories(category ? category.subCategories : []);
+    }
+  }, [selectedItem, categories]);
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -266,40 +268,43 @@ const ItemForm = ({ title = "Add New Item",
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    if (selectedItem) {
-      await updateItem(selectedItem._id, formData);
+    try {
+      if (selectedItem) {
+        await updateItem(selectedItem._id, formData);
 
-      alert("Item Updated Successfully");
-    } else {
-      await addItem(formData);
+        // alert("Item Updated Successfully");
+        toast.success("Item Updated Successfully");
+      } else {
+        await addItem(formData);
 
-      alert("Item Added Successfully");
+        // alert("Item Added Successfully");
+        toast.success("Item Added Successfully");
+      }
+
+      onItemAdded();
+
+      setFormData({
+        itemName: "",
+        sizeInInch: "",
+        sizeInMm: "",
+        category: "",
+        subCategory: "",
+        itemInKg: "",
+        weightPerPc: "",
+        weightUnit: "gm",
+        totalPc: "",
+        dozenWeight: "",
+        lowStockWarning: "",
+      });
+
+      setSubCategories([]);
+    } catch (error) {
+      // alert(error.response?.data?.message || "Something went wrong");
+      toast.error(error.response?.data?.message || "Something went wrong");
     }
-
-    onItemAdded();
-
-    setFormData({
-      itemName: "",
-      sizeInInch: "",
-      sizeInMm: "",
-      category: "",
-      subCategory: "",
-      itemInKg: "",
-      weightPerPc: "",
-      weightUnit: "gm",
-      totalPc: "",
-      dozenWeight: "",
-      lowStockWarning: "",
-    });
-
-    setSubCategories([]);
-  } catch (error) {
-    alert(error.response?.data?.message || "Something went wrong");
-  }
-};
+  };
   return (
     <div className="item-form-card">
       <h2>{title}</h2>
@@ -354,15 +359,6 @@ const ItemForm = ({ title = "Add New Item",
           <div className="item-form-group">
             <label>Category *</label>
 
-            {/* <select
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-            >
-              <option value="">Select Category</option>
-
-              {/* Dynamic Categories Here */}
-            {/* </select> */}
             <select
               name="category"
               value={formData.category}
@@ -382,15 +378,7 @@ const ItemForm = ({ title = "Add New Item",
           <div className="item-form-group">
             <label>Sub Category</label>
 
-            {/* <select
-              name="subCategory"
-              value={formData.subCategory}
-              onChange={handleChange}
-            >
-              <option value="">Select Sub Category</option>
-
-              {/* Dynamic Sub Categories Here */}
-            {/* </select> */}
+            
             <select
               name="subCategory"
               value={formData.subCategory}

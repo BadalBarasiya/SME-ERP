@@ -106,9 +106,11 @@ const useItem = () => {
 
       await loadData();
 
-      alert("Item deleted successfully");
+      // alert("Item deleted successfully");
+      toast.success("Item deleted successfully")
     } catch (error) {
-      alert(error.response?.data?.message || "Delete failed");
+      // alert(error.response?.data?.message || "Delete failed");
+      toast.error(error.response?.data?.message || "Delete failed")
     }
   };
 

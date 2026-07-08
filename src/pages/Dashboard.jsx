@@ -1,4 +1,5 @@
 
+
 const Dashboard =()=>{
 
 
@@ -9,7 +10,7 @@ const Dashboard =()=>{
         <>
 
         <h2>Welcome to SME ERP</h2>
-        </>
+            </>
 
 
     )

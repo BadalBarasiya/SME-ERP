@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { deleteParty, getParties } from "../services/partyService";
 import useDebounce from "./useDebounce";
 import { getStats } from "../services/partyService";
+import { toast } from "react-toastify";
 
 const useParty = () => {
   const [search, setSearch] = useState("");
@@ -69,10 +70,12 @@ const useParty = () => {
       await deleteParty(id);
       await loadData();
       //   await fetchParties();
+      toast.success("Party deleted successfully");
 
-      alert("Party deleted successfully");
+      // alert("Party deleted successfully");
     } catch (error) {
-      alert(error.response?.data?.message || "Delete failed");
+      // alert(error.response?.data?.message || "Delete failed");
+      toast.error(error.response?.data?.message || "Delete failed");
     }
   };
   const loadData = async () => {

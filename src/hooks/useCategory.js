@@ -9,6 +9,7 @@ import {
   deleteCategory,
   deleteSubCategory,
 } from "../services/categoryService";
+import { toast } from "react-toastify";
 
 const useCategory = () => {
 
@@ -107,9 +108,11 @@ const useCategory = () => {
 
       await loadData();
 
-      alert("Category deleted successfully");
+      // alert("Category deleted successfully");
+      toast.success("Category deleted successfully");
     } catch (error) {
-      alert(error.response?.data?.message || "Delete failed");
+      // alert(error.response?.data?.message || "Delete failed");
+      toast.error(error.response?.data?.message || "Delete failed");
     }
   };
 
@@ -217,9 +220,11 @@ if (!confirmDelete) return;
 
     await loadData();
 
-    alert("Sub Category deleted successfully");
+    // alert("Sub Category deleted successfully");
+    toast.success("Sub Category deleted successfully")
   } catch (error) {
-    alert(error.response?.data?.message);
+    // alert(error.response?.data?.message);
+    toast.error(error.response?.data?.message)
   }
 };
 
@@ -238,23 +243,27 @@ if (!confirmDelete) return;
       };
 
       if (!payload.categoryName) {
-        alert("Category Name is required");
+        // alert("Category Name is required");
+        toast.error("Category Name is required")
         return;
       }
 
       if (selectedCategory) {
         await updateCategory(selectedCategory._id, payload);
 
-        alert("Category updated successfully");
+        // alert("Category updated successfully");
+        toast.success("Category updated successfully")
       } else {
         await addCategory(payload);
 
-        alert("Category added successfully");
+        // alert("Category added successfully");
+        toast.success("Category added successfully")
       }
 
       await handleCategoryAdded();
     } catch (error) {
-      alert(error.response?.data?.message || "Something went wrong");
+      // alert(error.response?.data?.message || "Something went wrong");
+      toast.error(error.response?.data?.message || "Something went wrong")
     }
   };
   // ==========================
@@ -297,7 +306,7 @@ if (!confirmDelete) return;
     setShowForm,
     setSelectedCategory,
     setFormData,
-
+                               
     handleDelete,
     handleEdit,
     handleCategoryAdded,

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./PartyForm.css";
 import API from "../../api/partyApi";
+import { toast } from "react-toastify";
 
 const getInitialFormData = (selectedParty) => ({
   partyName: selectedParty?.partyName || "",
@@ -33,11 +34,13 @@ const PartyForm = ({ onCancel, onPartyAdded, selectedParty }) => {
         res = await API.post("/add", formData);
       }
 
-      alert(res.data.message);
+      // alert(res.data.message);
+      toast.success(res.data.message);
 
       onPartyAdded();
     } catch (error) {
-      alert(error.response?.data?.message || "Something went wrong");
+      // alert(error.response?.data?.message || "Something went wrong");
+      toast.error(error.response?.data?.message || "Something went wrong");
     }
   };
   const handleCancel = () => {
